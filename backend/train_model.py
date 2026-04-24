@@ -49,11 +49,11 @@ def train():
     print("This will take 5-8 minutes.")
     
     model = RandomForestClassifier(
-        n_estimators=150,         # back to 150 — 200 caused OOM during predict
-        max_depth=80,             # keeping 80 — this is the accuracy lever
+        n_estimators=100,         # reduced from 150 — cuts model file size significantly
+        max_depth=40,             # reduced from 80 — biggest RAM saver
         min_samples_split=2,
-        min_samples_leaf=1,
-        max_samples=0.7,
+        min_samples_leaf=2,       # slightly coarser leaves — smaller tree nodes
+        max_samples=0.5,          # less data per tree — smaller trees
         max_features='sqrt',
         random_state=42,
         n_jobs=-1,
