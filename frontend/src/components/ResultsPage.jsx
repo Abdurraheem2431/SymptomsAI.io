@@ -42,44 +42,47 @@ export default function ResultsPage() {
   const t = triage(result.probability)
 
   return (
-    <div className="page">
-      <div className="container">
+    <>
+        <nav className="navbar">
+            <span className="navbar-brand">SymptomsAI.io</span>
+            <span className="navbar-sub">Not a substitute for professional medical advice</span>
+        </nav>
 
-        <div className="header">
-          <p className="header-eyebrow">SymptomsAI.io</p>
-          <h1 className="header-title">Your results</h1>
-          <p className="header-sub">"{query}"</p>
-        </div>
+        <div className="page">
+        <div className="container">
 
-        <div className="card">
-          <div className={`triage-banner triage-${t.color}`}>
-            <div className="triage-dot" />
-            <div>
-              <p className="triage-label">{t.label}</p>
-              <p className="triage-advice">{t.advice}</p>
+            
+
+            <div className="card">
+                <div className={`triage-banner triage-${t.color}`}>
+                    <div className="triage-dot" />
+                    <div>
+                    <p className="triage-label">{t.label}</p>
+                    <p className="triage-advice">{t.advice}</p>
+                </div>
             </div>
-          </div>
 
-          <div className="prediction-section">
-            <p className="section-label">Top prediction</p>
-            <p className="disease-name">{result.prediction}</p>
-            <p className="disease-confidence">Confidence: {(result.probability * 100).toFixed(1)}%</p>
-          </div>
+            <div className="prediction-section">
+                <p className="section-label">Top prediction</p>
+                <p className="disease-name">{result.prediction}</p>
+                <p className="disease-confidence">Confidence: {(result.probability * 100).toFixed(1)}%</p>
+            </div>
 
-          <p className="section-label">Likelihood breakdown</p>
-          <BarChart top5={result.top5} />
+            <p className="section-label">Likelihood breakdown</p>
+            <BarChart top5={result.top5} />
 
-          <p className="disclaimer">
-            This tool uses a machine learning model and is for informational purposes only.
-            Always consult a qualified healthcare professional for diagnosis and treatment.
-          </p>
+            <p className="disclaimer">
+                This tool uses a machine learning model and is for informational purposes only.
+                Always consult a qualified healthcare professional for diagnosis and treatment.
+            </p>
+            </div>
+
+            <button className="btn-secondary" onClick={() => navigate('/')}>
+            Check another symptom
+            </button>
+
         </div>
-
-        <button className="btn-secondary" onClick={() => navigate('/')}>
-          Check another symptom
-        </button>
-
-      </div>
-    </div>
+        </div>
+    </>
   )
 }

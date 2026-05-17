@@ -28,32 +28,32 @@ export default function InputPage() {
   }
 
   return (
-    <div className="page">
-      <div className="container">
+    <>
+        <nav className="navbar">
+            <span className="navbar-brand">SymptomsAI.io</span>
+            <span className="navbar-sub">Not a substitute for professional medical advice</span>
+        </nav>
 
-        <div className="header">
-          <p className="header-eyebrow">SymptomsAI.io</p>
-          <h1 className="header-title">Symptom triage assistant</h1>
-          <p className="header-sub">Not a substitute for professional medical advice</p>
+        <div className="page">
+        <div className="container">
+
+            <div className="card">
+            <p className="card-title">Describe your symptoms</p>
+            <p className="card-sub">Use plain language — include duration, severity, and location if known.</p>
+            <textarea
+                className="symptom-input"
+                placeholder="e.g. I have had a sharp stomach pain for two days, along with nausea and a mild fever..."
+                value={text}
+                onChange={e => setText(e.target.value)}
+            />
+            {error && <p className="error-box" style={{ marginTop: '12px' }}>{error}</p>}
+            <button className="btn-primary" onClick={handleAnalyse} disabled={loading || !text.trim()}>
+                {loading ? 'Analysing...' : 'Analyse symptoms'}
+            </button>
+            </div>
+
         </div>
-
-        <div className="card">
-          <p className="card-title">Describe your symptoms</p>
-          <p className="card-sub">Use plain language — include duration, severity, and location if known.</p>
-          <textarea
-            className="symptom-input"
-            placeholder="e.g. I have had a sharp stomach pain for two days, along with nausea and a mild fever..."
-            value={text}
-            onChange={e => setText(e.target.value)}
-          />
-          {error && <p className="error-box" style={{ marginTop: '12px' }}>{error}</p>}
-          <button className="btn-primary" onClick={handleAnalyse} disabled={loading || !text.trim()}>
-            {loading ? 'Analysing...' : 'Analyse symptoms'}
-          </button>
-          <p className="privacy-note">Your input is not stored or shared.</p>
         </div>
-
-      </div>
-    </div>
+    </>
   )
 }
